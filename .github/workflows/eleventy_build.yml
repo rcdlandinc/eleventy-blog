@@ -1,0 +1,15 @@
+name: Eleventy Build
+on: [push]
+
+jobs:
+  build_deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Build
+        uses: cjerrington/actions-eleventy@master
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
